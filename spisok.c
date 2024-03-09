@@ -3,23 +3,23 @@
 #include <string.h>
 #include <stdlib.h> 
 
-// Определение структуры для элемента списка
+// ГЋГЇГ°ГҐГ¤ГҐГ«ГҐГ­ГЁГҐ Г±ГІГ°ГіГЄГІГіГ°Г» Г¤Г«Гї ГЅГ«ГҐГ¬ГҐГ­ГІГ  Г±ГЇГЁГ±ГЄГ 
 typedef struct Node {
     void* data;
     struct Node* next;
 } Node;
 
-// Структура для представления связного списка
+// Г‘ГІГ°ГіГЄГІГіГ°Г  Г¤Г«Гї ГЇГ°ГҐГ¤Г±ГІГ ГўГ«ГҐГ­ГЁГї Г±ГўГїГ§Г­Г®ГЈГ® Г±ГЇГЁГ±ГЄГ 
 typedef struct {
     Node* head;
 } LinkedList;
 
-// Функция для инициализации пустого списка
+// Г”ГіГ­ГЄГ¶ГЁГї Г¤Г«Гї ГЁГ­ГЁГ¶ГЁГ Г«ГЁГ§Г Г¶ГЁГЁ ГЇГіГ±ГІГ®ГЈГ® Г±ГЇГЁГ±ГЄГ 
 void initLinkedList(LinkedList* list) {
     list->head = NULL;
 }
 
-// Функция для добавления нового элемента в конец списка
+// Г”ГіГ­ГЄГ¶ГЁГї Г¤Г«Гї Г¤Г®ГЎГ ГўГ«ГҐГ­ГЁГї Г­Г®ГўГ®ГЈГ® ГЅГ«ГҐГ¬ГҐГ­ГІГ  Гў ГЄГ®Г­ГҐГ¶ Г±ГЇГЁГ±ГЄГ 
 void append(LinkedList* list, void* data) {
     Node* newNode = (Node*)malloc(sizeof(Node));
     newNode->data = data;
@@ -37,27 +37,27 @@ void append(LinkedList* list, void* data) {
     }
 }
 
-//добавление узла после указанного
+//Г¤Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ ГіГ§Г«Г  ГЇГ®Г±Г«ГҐ ГіГЄГ Г§Г Г­Г­Г®ГЈГ®
 void addelem(LinkedList* list, Node* ptr, void* infa)
 {
     Node* temp, * p;
     temp = (Node*)malloc(sizeof(Node));
-    p = ptr->next; // сохранение указателя на следующий узел
-    ptr->next = temp; // предыдущий узел указывает на создаваемый
-    temp->data = infa; // сохранение поля данных добавляемого узла
-    temp->next = p; // созданный узел указывает на следующий элемент
+    p = ptr->next; // Г±Г®ГµГ°Г Г­ГҐГ­ГЁГҐ ГіГЄГ Г§Г ГІГҐГ«Гї Г­Г  Г±Г«ГҐГ¤ГіГѕГ№ГЁГ© ГіГ§ГҐГ«
+    ptr->next = temp; // ГЇГ°ГҐГ¤Г»Г¤ГіГ№ГЁГ© ГіГ§ГҐГ« ГіГЄГ Г§Г»ГўГ ГҐГІ Г­Г  Г±Г®Г§Г¤Г ГўГ ГҐГ¬Г»Г©
+    temp->data = infa; // Г±Г®ГµГ°Г Г­ГҐГ­ГЁГҐ ГЇГ®Г«Гї Г¤Г Г­Г­Г»Гµ Г¤Г®ГЎГ ГўГ«ГїГҐГ¬Г®ГЈГ® ГіГ§Г«Г 
+    temp->next = p; // Г±Г®Г§Г¤Г Г­Г­Г»Г© ГіГ§ГҐГ« ГіГЄГ Г§Г»ГўГ ГҐГІ Г­Г  Г±Г«ГҐГ¤ГіГѕГ№ГЁГ© ГЅГ«ГҐГ¬ГҐГ­ГІ
 }
 
 void deletelem(Node* lst, LinkedList* list)
 {
     Node* temp;
     temp = list->head;
-    while (temp->next != lst) // просматриваем список начиная с корня
-    { // пока не найдем узел, предшествующий lst
+    while (temp->next != lst) // ГЇГ°Г®Г±Г¬Г ГІГ°ГЁГўГ ГҐГ¬ Г±ГЇГЁГ±Г®ГЄ Г­Г Г·ГЁГ­Г Гї Г± ГЄГ®Г°Г­Гї
+    { // ГЇГ®ГЄГ  Г­ГҐ Г­Г Г©Г¤ГҐГ¬ ГіГ§ГҐГ«, ГЇГ°ГҐГ¤ГёГҐГ±ГІГўГіГѕГ№ГЁГ© lst
         temp = temp->next;
     }
-    temp->next = lst->next; // переставляем указатель
-    free(lst); // освобождаем память удаляемого узла
+    temp->next = lst->next; // ГЇГҐГ°ГҐГ±ГІГ ГўГ«ГїГҐГ¬ ГіГЄГ Г§Г ГІГҐГ«Гј
+    free(lst); // Г®Г±ГўГ®ГЎГ®Г¦Г¤Г ГҐГ¬ ГЇГ Г¬ГїГІГј ГіГ¤Г Г«ГїГҐГ¬Г®ГЈГ® ГіГ§Г«Г 
 }
 
 void listprint(LinkedList* list)
@@ -66,31 +66,31 @@ void listprint(LinkedList* list)
     p = list->head;
     while (p != NULL)
     {
-        printf("%d ", p->data); // вывод значения элемента p
-        p = p->next; // переход к следующему узлу
+        printf("%d ", p->data); // ГўГ»ГўГ®Г¤ Г§Г­Г Г·ГҐГ­ГЁГї ГЅГ«ГҐГ¬ГҐГ­ГІГ  p
+        p = p->next; // ГЇГҐГ°ГҐГµГ®Г¤ ГЄ Г±Г«ГҐГ¤ГіГѕГ№ГҐГ¬Гі ГіГ§Г«Гі
     }
 }
 
 void swap(Node* lst1, Node* lst2, LinkedList* list)
 {
-    // Возвращает новый корень списка
+    // Г‚Г®Г§ГўГ°Г Г№Г ГҐГІ Г­Г®ГўГ»Г© ГЄГ®Г°ГҐГ­Гј Г±ГЇГЁГ±ГЄГ 
     Node* prev1, * prev2, * next1, * next2;
     prev1 = list->head;
     prev2 = list->head;
     if (prev1 == lst1)
         prev1 = NULL;
     else
-        while (prev1->next != lst1) // поиск узла предшествующего lst1
+        while (prev1->next != lst1) // ГЇГ®ГЁГ±ГЄ ГіГ§Г«Г  ГЇГ°ГҐГ¤ГёГҐГ±ГІГўГіГѕГ№ГҐГЈГ® lst1
             prev1 = prev1->next;
     if (prev2 == lst2)
         prev2 = NULL;
     else
-        while (prev2->next != lst2) // поиск узла предшествующего lst2
+        while (prev2->next != lst2) // ГЇГ®ГЁГ±ГЄ ГіГ§Г«Г  ГЇГ°ГҐГ¤ГёГҐГ±ГІГўГіГѕГ№ГҐГЈГ® lst2
             prev2 = prev2->next;
-    next1 = lst1->next;  // узел следующий за lst1
-    next2 = lst2->next;  // узел следующий за lst2
+    next1 = lst1->next;  // ГіГ§ГҐГ« Г±Г«ГҐГ¤ГіГѕГ№ГЁГ© Г§Г  lst1
+    next2 = lst2->next;  // ГіГ§ГҐГ« Г±Г«ГҐГ¤ГіГѕГ№ГЁГ© Г§Г  lst2
     if (lst2 == next1)
-    {                       // обмениваются соседние узлы
+    {                       // Г®ГЎГ¬ГҐГ­ГЁГўГ ГѕГІГ±Гї Г±Г®Г±ГҐГ¤Г­ГЁГҐ ГіГ§Г«Г»
         lst2->next = lst1;
         lst1->next = next2;
         if (lst1 != list->head)
@@ -99,7 +99,7 @@ void swap(Node* lst1, Node* lst2, LinkedList* list)
     else
         if (lst1 == next2)
         {
-            // обмениваются соседние узлы
+            // Г®ГЎГ¬ГҐГ­ГЁГўГ ГѕГІГ±Гї Г±Г®Г±ГҐГ¤Г­ГЁГҐ ГіГ§Г«Г»
             lst1->next = lst2;
             lst2->next = next1;
             if (lst2 != list->head)
@@ -107,7 +107,7 @@ void swap(Node* lst1, Node* lst2, LinkedList* list)
         }
         else
         {
-            // обмениваются отстоящие узлы
+            // Г®ГЎГ¬ГҐГ­ГЁГўГ ГѕГІГ±Гї Г®ГІГ±ГІГ®ГїГ№ГЁГҐ ГіГ§Г«Г»
             if (lst1 != list->head)
                 prev1->next = lst2;
             lst2->next = next1;
@@ -117,13 +117,13 @@ void swap(Node* lst1, Node* lst2, LinkedList* list)
         }
 }
 
-// Пример использования API:
+// ГЏГ°ГЁГ¬ГҐГ° ГЁГ±ГЇГ®Г«ГјГ§Г®ГўГ Г­ГЁГї API:
 int main() {
-    // Инициализация нового связного списка
+    // Г€Г­ГЁГ¶ГЁГ Г«ГЁГ§Г Г¶ГЁГї Г­Г®ГўГ®ГЈГ® Г±ГўГїГ§Г­Г®ГЈГ® Г±ГЇГЁГ±ГЄГ 
     LinkedList myList;
     initLinkedList(&myList);
 
-    // Добавление элементов разного типа в список
+    // Г„Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ ГЅГ«ГҐГ¬ГҐГ­ГІГ®Гў Г°Г Г§Г­Г®ГЈГ® ГІГЁГЇГ  Гў Г±ГЇГЁГ±Г®ГЄ
     int intValue1 = 42;
     int intValue2 = 43;
     int intValue3 = 44;
@@ -140,10 +140,10 @@ int main() {
 
     deletelem(del_node, &myList);
 
-    swap(myList.head->next->next, myList.head->next->next, &myList);
+    swap(myList.head->next->next, myList.head->next->next->next, &myList);
 
     listprint(&myList);
-    // Использование списка
+    // Г€Г±ГЇГ®Г«ГјГ§Г®ГўГ Г­ГЁГҐ Г±ГЇГЁГ±ГЄГ 
 
     return 0;
 }
